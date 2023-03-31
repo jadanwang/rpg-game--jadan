@@ -1,0 +1,68 @@
+#Jadan- Added encounter with monster if player reaches certain point in maze(Using if statements, adding new variables, making user decide actions to win the fight), added exit to maze(only aquirable if encountered and defeated monster beforehand, using searching in lists)
+
+
+else:
+        if x == 13 and y == 12:
+            battle = True
+            hp = health
+            attack = 10
+            monster = 30
+            you = health
+            tactical_heal = 5
+            #here
+            while battle:
+                print("Monster HP:"[monster])
+                print("Your HP:"[hp])
+                print(f"A: Dagger ({attack} damage)")
+                print(f"B: Tactical heal ({tactical_heal})")
+
+                user_choice = str(input("").lower())
+
+                if user_choice == "a":
+                    you -= attack
+                    print("You stab the monster")
+
+                elif user_choice == "b":
+                    print("You used your tactical combat power! +5 health.")
+                    hp += 5
+
+                if monster <= 0:
+                    print("You defeated the monster!")
+                    print("As a reward, here is a key. This can be used to open any door.")
+                    inventory.append("key")
+                    battle = False
+
+                import random
+                list1 = [1, 2]
+                monster_attack = random.choice(list1)
+                if monster_attack == 1 and battle == True:
+                    print("The monster swung! (10 Damage)")
+                    print("The monster is clumsy and collapsed (-5 Health)")
+                    monster -= 5
+                    hp -= 20
+                if monster_attack == 2 and battle == True:
+                    print("The monster swung! (10 Damage)")
+                    hp -= 10
+
+                if hp <= 0:
+                    print("You lost the battle!")
+                    print("The monster stole some coins.")
+                    coins = coins - 5
+                    print(f"You are currently at {x,y}.")
+
+                    battle = False
+                    break
+
+    if x == 16 and y == 20:
+        print("You found a mysterious door.")
+        while True:
+            print("[1] Go through (-1 key)")
+            if "key" not in inventory:
+                print("The door is locked, locate the monster and defeat it to find the key.")
+        
+    
+            else:
+                print("Congratulations! You have found the exit. Thanks for playing!")
+                door_locked = False
+                inventory.remove("key")
+            exit(0)
